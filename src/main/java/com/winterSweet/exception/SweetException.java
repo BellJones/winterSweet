@@ -27,7 +27,11 @@ import org.slf4j.LoggerFactory;
  * Description: 异常
  */
 public class SweetException extends Exception {
-    public static final Logger LOGGER = LoggerFactory.getLogger(SweetException.class.getName());
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static final Logger LOGGER = LoggerFactory.getLogger(SweetException.class.getName());
 
     public SweetException() {
     }
