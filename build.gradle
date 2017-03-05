@@ -47,6 +47,9 @@ dependencies {
             /* 连接池 */
             'com.alibaba:druid:1.0.27',
 
+            /* 数据库驱动 */
+            'mysql:mysql-connector-java:6.0.5',
+
             /* aop支持 */
             'org.aspectj:aspectjrt:1.8.9',
             'org.aspectj:aspectjweaver:1.8.9',

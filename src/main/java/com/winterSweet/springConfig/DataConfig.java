@@ -1,0 +1,68 @@
+/*
+ * Copyright [2017] [Butterfly Killer]
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.winterSweet.springConfig;
+
+import com.alibaba.druid.pool.DruidDataSource;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+
+import javax.sql.DataSource;
+import java.io.IOException;
+import java.sql.SQLException;
+
+/**
+ * Created with IntelliJ IDEA
+ * User: Butterfly Killer
+ * Date: 2017/2/20 下午 11:34
+ * <p>
+ * Description: 开发用数据库连接配置
+ * <p>
+ * 这里只列出常用的简单配置，详细配置，请访问
+ * http://www.cnblogs.com/SummerinShire/p/5828888.html
+ * 获取
+ * </p>
+ */
+@Configuration
+@Profile ("dev")
+public class DataConfig {
+
+    @Bean ("dataSource")
+    public DataSource dataSource() throws SQLException, IOException {
+        DruidDataSource dataSource = new DruidDataSource();
+        // 数据库连接URL
+        dataSource.setUrl("jdbc:mysql://localhost:3306/winterSweet?serverTimezone=UTC&characterEncoding=utf8");
+        // 数据库用户名
+        dataSource.setUsername("root");
+        // 用户密码
+        dataSource.setPassword("123456");
+        // 初始化时建立物理连接的个数
+        dataSource.setInitialSize(3);
+        // 最大连接池数量
+        dataSource.setMaxActive(20);
+        // 最小连接池数量
+        dataSource.setMinIdle(2);
+        // 获取连接时最大等待时间，单位毫秒
+        dataSource.setMaxWait(2000);
+        // 是否缓存preparedStatement
+        dataSource.setPoolPreparedStatements(true);
+        dataSource.setMaxOpenPreparedStatements(100);
+        // 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
+        dataSource.setFilters("stat,wall");
+        return dataSource;
+    }
+}
