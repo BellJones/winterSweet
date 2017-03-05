@@ -45,7 +45,7 @@ public class ReadExcelUtil {
     private static final Logger LOGGER = LoggerFactory.getLogger(ReadExcelUtil.class.getName());
 
     public static void main(String[] args) {
-        String path = "E://通讯录2017.2.20.xls";
+        String path = "E://test.xls";
         System.out.println(readExcel(path));
     }
 
