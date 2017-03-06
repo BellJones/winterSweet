@@ -14,29 +14,30 @@
  * limitations under the License.
  */
 
-package com.winterSweet.service;
+package com.winterSweet.project.exception;
 
-import com.google.common.collect.Lists;
-import com.winterSweet.bean.Actor;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/2/27 下午 6:00
+ * Date: 2017/2/23 下午 11:01
  * <p>
- * Version: 1.0
- * Description:
+ * Description: 异常
  */
-@Service
-public class ActorService {
-    public List<Actor> getActor(String name) {
-        Actor actor = new Actor();
-        actor.setFirstName(name);
-        List<Actor> actors = Lists.newArrayList();
-        actors.add(actor);
-        return actors;
+public class SweetException extends Exception {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public static final Logger LOGGER = LoggerFactory.getLogger(SweetException.class.getName());
+
+    public SweetException() {
+    }
+
+    public SweetException(String message) {
+        super(message);
+        LOGGER.error(message);
     }
 }

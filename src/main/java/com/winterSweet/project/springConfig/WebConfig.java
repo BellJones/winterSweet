@@ -14,11 +14,15 @@
  * limitations under the License.
  */
 
-package com.winterSweet.springConfig;
+package com.winterSweet.project.springConfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ContextResource;
+import org.springframework.core.io.Resource;
+import org.springframework.web.context.support.ServletContextResource;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -32,7 +36,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan (basePackages = {"com.winterSweet.controller"})
+@ComponentScan (basePackages = "com.winterSweet.project.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     /**
@@ -44,5 +48,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         resolver.setPrefix("/WEB-INF/view/");
         resolver.setSuffix(".jsp");
         return resolver;
+    }
+
+    /**
+     * 文件上传下载
+     */
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+        // 设置允许上传的文件的最大值，单位是bytes
+        commonsMultipartResolver.setMaxUploadSize(20971520); // 20m，默认值为-1，表示无限制
+        commonsMultipartResolver.setMaxUploadSizePerFile(5242880); // 5m，默认值为-1，表示无限制
+        commonsMultipartResolver.setMaxInMemorySize(1048576); // 1m，默认为 10240 bytes
+        // 设置默认的文件编码为UTF-8，此编码必须与用户JSP的编码一致
+        commonsMultipartResolver.setDefaultEncoding("UTF-8");
+        return commonsMultipartResolver;
     }
 }

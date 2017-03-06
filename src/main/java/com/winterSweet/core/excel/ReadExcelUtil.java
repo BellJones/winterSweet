@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.util;
+package com.winterSweet.core.excel;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -87,6 +87,11 @@ public class ReadExcelUtil {
             if (1 > lines) continue;
             List<List<Object>> content = readSheet(lines, sheet);
             sheets.put(name, content);
+        }
+        try {
+            workbook.close();
+        } catch (IOException e) {
+            LOGGER.error("workbook closed error : {}", e.getMessage());
         }
         return sheets;
     }

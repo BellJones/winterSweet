@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.bean;
+package com.winterSweet.project.bean;
 
 import java.util.Date;
 

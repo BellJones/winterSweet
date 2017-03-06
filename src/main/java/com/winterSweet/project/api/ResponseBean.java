@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.api;
+package com.winterSweet.project.api;
 
 import java.util.List;
 

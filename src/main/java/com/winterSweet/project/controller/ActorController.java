@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.winterSweet.controller;
+package com.winterSweet.project.controller;
 
-import com.winterSweet.api.BaseController;
-import com.winterSweet.api.ResponseBean;
-import com.winterSweet.bean.Actor;
-import com.winterSweet.service.ActorService;
+import com.winterSweet.project.api.BaseController;
+import com.winterSweet.project.api.ResponseBean;
+import com.winterSweet.project.bean.Actor;
+import com.winterSweet.project.service.ActorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

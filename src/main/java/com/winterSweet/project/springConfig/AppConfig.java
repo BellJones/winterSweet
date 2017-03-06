@@ -14,30 +14,27 @@
  * limitations under the License.
  */
 
-package com.winterSweet.exception;
+package com.winterSweet.project.springConfig;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/2/23 下午 11:01
+ * Date: 2017/2/21 上午 12:09
  * <p>
- * Description: 异常
+ * Description: MVC上下文环境配置文件
  */
-public class SweetException extends Exception {
-    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	public static final Logger LOGGER = LoggerFactory.getLogger(SweetException.class.getName());
+@Configuration
+@ComponentScan (basePackages = {"com.winterSweet.project.service", "com.winterSweet.core.file"})
+public class AppConfig {
 
-    public SweetException() {
-    }
-
-    public SweetException(String message) {
-        super(message);
-        LOGGER.error(message);
-    }
+//    @Autowired
+//    private DataSource dataSource;
+//
+//    @Bean
+//    public void dataSource() {
+//        // 根据JPA配置实例
+//    }
 }

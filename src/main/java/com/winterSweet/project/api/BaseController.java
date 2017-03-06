@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.api;
+package com.winterSweet.project.api;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;

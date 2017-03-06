@@ -1,4 +1,4 @@
-package com.winterSweet.util;
+package com.winterSweet.core.excel;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -153,7 +153,7 @@ public class WriterExcelUtil {
         /*
          * 写入到文件中
          */
-        boolean isCorrect = false;
+        boolean isCorrect;
         try {
             File file = new File(path);
             OutputStream outputStream = new FileOutputStream(file);

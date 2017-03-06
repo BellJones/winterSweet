@@ -14,27 +14,29 @@
  * limitations under the License.
  */
 
-package com.winterSweet.springConfig;
+package com.winterSweet.project.service;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import com.google.common.collect.Lists;
+import com.winterSweet.project.bean.Actor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/2/21 上午 12:09
+ * Date: 2017/2/27 下午 6:00
  * <p>
- * Description: MVC上下文环境配置文件
+ * Version: 1.0
+ * Description:
  */
-@Configuration
-@ComponentScan (basePackages = {"com.winterSweet.service"})
-public class AppConfig {
-
-//    @Autowired
-//    private DataSource dataSource;
-//
-//    @Bean
-//    public void dataSource() {
-//        // 根据JPA配置实例
-//    }
+@Service
+public class ActorService {
+    public List<Actor> getActor(String name) {
+        Actor actor = new Actor();
+        actor.setFirstName(name);
+        List<Actor> actors = Lists.newArrayList();
+        actors.add(actor);
+        return actors;
+    }
 }

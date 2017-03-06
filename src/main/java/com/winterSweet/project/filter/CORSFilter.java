@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.filter;
+package com.winterSweet.project.filter;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
