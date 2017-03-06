@@ -176,10 +176,6 @@ public class WriterExcelUtil {
     /**
      * Create a library of cell styles
      */
-    /**
-     * @param wb
-     * @return
-     */
     private static Map<String, CellStyle> createStyles(Workbook wb) {
         Map<String, CellStyle> styles = Maps.newHashMap();
 
