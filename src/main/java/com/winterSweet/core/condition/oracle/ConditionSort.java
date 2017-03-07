@@ -97,7 +97,7 @@ public class ConditionSort implements Serializable {
             return null;
         }
         String value;
-        if (null == property) {
+        if (null == property || "".equals(property)) {
             value = "NULL";
         } else {
             value = property;
