@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-package com.winterSweet.core.constant;
+package com.winterSweet.core.condition.oracle;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/6 下午 10:26
+ * Date: 2017/3/7 14:58
  * <p>
- * Version: 1.0
- * Description: 常量
+ * Description: SQL拼接主函数
  */
-public class Constant {
-
-    // 文件上传的目的路径
-    public static final String UPLOAD_FILE_PATH = "file/";
+public class Condition {
 }
