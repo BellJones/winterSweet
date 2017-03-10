@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Created with IntelliJ IDEA
- * User: wangyl@vastio.com
+ * User: Butterfly Killer
  * Date: 2017/3/9 10:39
  * <p>
  * Description: 汉字转拼音工具

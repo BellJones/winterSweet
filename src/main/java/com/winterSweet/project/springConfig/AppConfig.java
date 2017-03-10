@@ -16,8 +16,18 @@
 
 package com.winterSweet.project.springConfig;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Lists;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import javax.sql.DataSource;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA
@@ -30,11 +40,37 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan (basePackages = {"com.winterSweet.project.service", "com.winterSweet.core.file"})
 public class AppConfig {
 
-//    @Autowired
-//    private DataSource dataSource;
-//
-//    @Bean
-//    public void dataSource() {
-//        // 根据JPA配置实例
-//    }
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
+    public void dataSource() {
+        // 根据JPA类型生成实例
+    }
+
+    /**
+     * <p>
+     * 设置支持的<code>MediaType</code>
+     * </p>
+     *
+     * <p>
+     *     设置返回的<code>JsonInclude</code>数据中是否允许特定值,比如<code>NULL</code>,返回到请求端.
+     * </p>
+     *
+     * @see org.springframework.http.MediaType
+     * @see com.fasterxml.jackson.annotation.JsonInclude
+     *
+     */
+    @Bean
+    public MappingJackson2HttpMessageConverter jacksonMessageConverter() {
+        MappingJackson2HttpMessageConverter supportedMediaTypes = new MappingJackson2HttpMessageConverter();
+        List<MediaType> mediaTypes = Lists.newArrayList();
+        mediaTypes.add(MediaType.APPLICATION_JSON_UTF8);
+        supportedMediaTypes.setSupportedMediaTypes(mediaTypes);
+        // 设置返回数据的 Mapper
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+        supportedMediaTypes.setObjectMapper(objectMapper);
+        return supportedMediaTypes;
+    }
 }
