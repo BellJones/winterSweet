@@ -29,17 +29,14 @@ repositories {
 
 ext {
     springMVCVersion = '4.3.6.RELEASE'
-    log4j2Version = '2.7'
+    log4j2Version = '2.8.1'
     aspectjVersion = '1.8.9'
     jacksonVersion = '2.8.6'
 }
 
 dependencies {
     providedCompile (
-            'javax.servlet:javax.servlet-api:3.0.1',
-            'javax.servlet.jsp:jsp-api:2.1',
-            'javax.servlet:jstl:1.1.2',
-            'taglibs:standard:1.1.2' /* JSP的扩展标记库 */
+            'javax.servlet:javax.servlet-api:3.1.0'
     )
     compile (
             fileTree(dir: 'lib', include: ['*.jar']), /* 包含lib文件夹下的所有jar文件 */
@@ -47,6 +44,7 @@ dependencies {
 
             /* springMVC */
             'org.springframework:spring-core:' + springMVCVersion,
+            'org.springframework:spring-context:' + springMVCVersion,
             'org.springframework:spring-web:' + springMVCVersion,
             'org.springframework:spring-webmvc:' + springMVCVersion,
             'org.springframework:spring-aop:' + springMVCVersion,
@@ -56,6 +54,10 @@ dependencies {
 
             /* 数据库驱动 */
             'mysql:mysql-connector-java:6.0.5',
+
+            /* 跨域资源访问 */
+            'com.thetransactioncompany:cors-filter:2.5',
+//            'com.thetransactioncompany:java-property-utils:1.10',
 
             /* aop支持 */
             'org.aspectj:aspectjrt:' + aspectjVersion,
@@ -67,16 +69,12 @@ dependencies {
             'com.fasterxml.jackson.core:jackson-databind:' + jacksonVersion,
             'com.fasterxml.jackson.core:jackson-annotations:' + jacksonVersion,
 
-            /* log4j */
-            'org.slf4j:slf4j-api:1.7.23',
-            'org.slf4j:slf4j-log4j12:1.7.23',
-            'log4j:log4j:1.2.17',
-            'commons-logging:commons-logging:1.2',
-
-            /* log4j2 */
+            /* log4j2, 参阅 https://logging.apache.org/log4j/2.x/maven-artifacts.html */
             'org.apache.logging.log4j:log4j-core:' + log4j2Version,
             'org.apache.logging.log4j:log4j-api:' + log4j2Version,
+            // 为了正确支持和处理Web应用程序的ClassLoader环境和容器生命周期，需要的一个附加模块。
             'org.apache.logging.log4j:log4j-web:' + log4j2Version,
+//            'org.apache.logging.log4j:log4j-slf4j-impl:' + log4j2Version, // SLF4J桥
 
             /* 文件上传下载 */
             'org.apache.poi:poi:3.15',
@@ -90,7 +88,8 @@ dependencies {
 
             /* 汉字拼音转换工具 */
             'com.belerweb:pinyin4j:2.5.1'
-
+    )
+    runtime (
     )
     testCompile (
             'junit:junit:4.12',
