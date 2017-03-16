@@ -15,7 +15,10 @@
  *
  */
 
-package com.winterSweet.condition.orm;
+package com.winterSweet.condition.genericDao;
+
+import com.winterSweet.condition.mapping.Table;
+import com.winterSweet.condition.mapping.TableField;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
