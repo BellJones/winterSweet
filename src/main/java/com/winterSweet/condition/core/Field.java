@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.condition.oracle;
+package com.winterSweet.condition.core;
 
 import java.io.Serializable;
 
@@ -30,7 +30,7 @@ import java.io.Serializable;
  *
  * @see Condition
  */
-public class ConditionField implements Serializable {
+public class Field implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -53,24 +53,24 @@ public class ConditionField implements Serializable {
     private String key; // 别名
     private int operator = 0;
 
-    public ConditionField() {
+    public Field() {
     }
 
-    public ConditionField(String property) {
+    public Field(String property) {
         this.property = property;
     }
 
-    public ConditionField(String property, String key) {
+    public Field(String property, String key) {
         this.property = property;
         this.key = key;
     }
 
-    public ConditionField(String property, int operator) {
+    public Field(String property, int operator) {
         this.property = property;
         this.operator = operator;
     }
 
-    public ConditionField(String property, String key, int operator) {
+    public Field(String property, int operator, String key) {
         this.property = property;
         this.key = key;
         this.operator = operator;

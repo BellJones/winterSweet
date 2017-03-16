@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.condition.oracle;
+package com.winterSweet.condition.core;
 
 import java.io.Serializable;
 
@@ -25,7 +25,7 @@ import java.io.Serializable;
  * <p>
  * Description: 排序
  */
-public class ConditionSort implements Serializable {
+public class Sort implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -33,61 +33,61 @@ public class ConditionSort implements Serializable {
     private boolean desc = false;
     private boolean ignoreCase = false;
 
-    public ConditionSort() {
+    public Sort() {
     }
 
-    public ConditionSort(String property) {
+    public Sort(String property) {
         this.property = property;
     }
 
-    public ConditionSort(String property, boolean desc) {
+    public Sort(String property, boolean desc) {
         this.property = property;
         this.desc = desc;
     }
 
-    public ConditionSort(String property, boolean desc, boolean ignoreCase) {
+    public Sort(String property, boolean desc, boolean ignoreCase) {
         this.property = property;
         this.desc = desc;
         this.ignoreCase = ignoreCase;
     }
 
-    public static ConditionSort asc(String property) {
-        return new ConditionSort(property);
+    static Sort asc(String property) {
+        return new Sort(property);
     }
 
-    public static ConditionSort asc(String property, boolean ignoreCase) {
-        return new ConditionSort(property, false, ignoreCase);
+    static Sort asc(String property, boolean ignoreCase) {
+        return new Sort(property, false, ignoreCase);
     }
 
-    public static ConditionSort desc(String property) {
-        return new ConditionSort(property, true);
+    static Sort desc(String property) {
+        return new Sort(property, true);
     }
 
-    public static ConditionSort desc(String property, boolean ignoreCase) {
-        return new ConditionSort(property, true, ignoreCase);
+    static Sort desc(String property, boolean ignoreCase) {
+        return new Sort(property, true, ignoreCase);
     }
 
-    public String getProperty() {
+    String getProperty() {
         return property;
     }
 
-    public void setProperty(String property) {
+    void setProperty(String property) {
         this.property = property;
     }
 
-    public boolean isDesc() {
+    boolean isDesc() {
         return desc;
     }
 
-    public void setDesc(boolean desc) {
+    void setDesc(boolean desc) {
         this.desc = desc;
     }
 
-    public boolean isIgnoreCase() {
+    boolean isIgnoreCase() {
         return ignoreCase;
     }
 
-    public void setIgnoreCase(boolean ignoreCase) {
+    void setIgnoreCase(boolean ignoreCase) {
         this.ignoreCase = ignoreCase;
     }
 

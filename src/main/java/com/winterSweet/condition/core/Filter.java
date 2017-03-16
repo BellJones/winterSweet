@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.winterSweet.condition.oracle;
+package com.winterSweet.condition.core;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.List;
  * <p>
  * Description: SQL中的过滤条件
  */
-public class ConditionFilter implements Serializable {
+public class Filter implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,110 +65,110 @@ public class ConditionFilter implements Serializable {
      */
     private int operator;
 
-    public ConditionFilter() {
+    public Filter() {
     }
 
-    public ConditionFilter(String property, Object value, int operator) {
+    public Filter(String property, Object value, int operator) {
         this.property = property;
         this.value = value;
         this.operator = operator;
     }
 
     // =
-    public static ConditionFilter equal(String property, Object value) {
-        return new ConditionFilter(property, value, OP_EQUAL);
+    public static Filter equal(String property, Object value) {
+        return new Filter(property, value, OP_EQUAL);
     }
 
     // !=
-    public static ConditionFilter notEqual(String property, Object value) {
-        return new ConditionFilter(property, value, OP_NOT_EQUAL);
+    public static Filter notEqual(String property, Object value) {
+        return new Filter(property, value, OP_NOT_EQUAL);
     }
 
     // LIKE
-    public static ConditionFilter like(String property, Object value) {
-        return new ConditionFilter(property, value, OP_LIKE);
+    public static Filter like(String property, Object value) {
+        return new Filter(property, value, OP_LIKE);
     }
 
     // LIKE '%XXX'
-    public static ConditionFilter leftLike(String property, Object value) {
-        return new ConditionFilter(property, value, OP_LEFT_LIKE);
+    public static Filter leftLike(String property, Object value) {
+        return new Filter(property, value, OP_LEFT_LIKE);
     }
 
     // LIKE 'XXX%'
-    public static ConditionFilter rightLike(String property, Object value) {
-        return new ConditionFilter(property, value, OP_RIGHT_LIKE);
+    public static Filter rightLike(String property, Object value) {
+        return new Filter(property, value, OP_RIGHT_LIKE);
     }
 
     // LIKE '%XXX%'
-    public static ConditionFilter allLike(String property, Object value) {
-        return new ConditionFilter(property, value, OP_ALL_LIKE);
+    public static Filter allLike(String property, Object value) {
+        return new Filter(property, value, OP_ALL_LIKE);
     }
 
     // >
-    public static ConditionFilter greatThan(String property, Object value) {
-        return new ConditionFilter(property, value, OP_GREATER_THAN);
+    public static Filter greatThan(String property, Object value) {
+        return new Filter(property, value, OP_GREATER_THAN);
     }
 
     // <
-    public static ConditionFilter lessThan(String property, Object value) {
-        return new ConditionFilter(property, value, OP_LESS_THAN);
+    public static Filter lessThan(String property, Object value) {
+        return new Filter(property, value, OP_LESS_THAN);
     }
 
     // >=
-    public static ConditionFilter greatOrEqual(String property, Object value) {
-        return new ConditionFilter(property, value, OP_GREATER_OR_EQUAL);
+    public static Filter greatOrEqual(String property, Object value) {
+        return new Filter(property, value, OP_GREATER_OR_EQUAL);
     }
 
     // <=
-    public static ConditionFilter lessOrEqual(String property, Object value) {
-        return new ConditionFilter(property, value, OP_LESS_OR_EQUAL);
+    public static Filter lessOrEqual(String property, Object value) {
+        return new Filter(property, value, OP_LESS_OR_EQUAL);
     }
 
     // IS NULL
-    public static ConditionFilter isNull(String property) {
-        return new ConditionFilter(property, true, OP_IS_NULL);
+    public static Filter isNull(String property) {
+        return new Filter(property, true, OP_IS_NULL);
     }
 
     // IS NOT NULL
-    public static ConditionFilter isNotNull(String property) {
-        return new ConditionFilter(property, true, OP_IS_NOT_NULL);
+    public static Filter isNotNull(String property) {
+        return new Filter(property, true, OP_IS_NOT_NULL);
     }
 
     // AND ...
-    public static ConditionFilter and(ConditionFilter... filters) {
-        ConditionFilter filter = new ConditionFilter("AND", null, OP_AND);
-        for (ConditionFilter f : filters) {
+    public static Filter and(Filter... filters) {
+        Filter filter = new Filter("AND", null, OP_AND);
+        for (Filter f : filters) {
             filter.add(f);
         }
         return filter;
     }
 
     // OR ...
-    public static ConditionFilter or(ConditionFilter... filters) {
-        ConditionFilter filter = and(filters);
+    public static Filter or(Filter... filters) {
+        Filter filter = and(filters);
         filter.property = "OR";
         filter.operator = OP_OR;
         return filter;
     }
 
     // NOT ...
-    public static ConditionFilter not(ConditionFilter conditionFilter) {
-        return new ConditionFilter("NOT", conditionFilter, OP_NOT);
+    public static Filter not(Filter filter) {
+        return new Filter("NOT", filter, OP_NOT);
     }
 
     // BETWEEN 123 AND 456
-    public static ConditionFilter rangeInt(String property, Object value) {
-        return new ConditionFilter(property, value, OP_RANGE_INT);
+    public static Filter rangeInt(String property, Object value) {
+        return new Filter(property, value, OP_RANGE_INT);
     }
 
     // BETWEEN TO_DATE(TIME_A, 'yyyy-mm-dd hh24:mi:ss') AND TO_DATE(TIME_B, 'yyyy-mm-dd hh24:mi:ss')
-    public static ConditionFilter rangeDate(String property, Object value) {
-        return new ConditionFilter(property, value, OP_RANGE_DATE);
+    public static Filter rangeDate(String property, Object value) {
+        return new Filter(property, value, OP_RANGE_DATE);
     }
 
     // ba la ba la
-    public static ConditionFilter customer(String property, Object value) {
-        return new ConditionFilter(property, value, OP_CUSTOMER);
+    public static Filter customer(String property, Object value) {
+        return new Filter(property, value, OP_CUSTOMER);
     }
 
     public String getProperty() {
@@ -196,7 +196,7 @@ public class ConditionFilter implements Serializable {
     }
 
     @SuppressWarnings("unchecked")
-    public void add(ConditionFilter filter) {
+    public void add(Filter filter) {
         if (null != value && value instanceof List) {
             ((List) value).add(filter);
         } else {
@@ -207,46 +207,46 @@ public class ConditionFilter implements Serializable {
     @Override
     public String toString() {
         switch (operator) {
-            case ConditionFilter.OP_EQUAL:
+            case Filter.OP_EQUAL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " = '" + value + "'";
-            case ConditionFilter.OP_NOT_EQUAL:
+            case Filter.OP_NOT_EQUAL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " != '" + value + "'";
-            case ConditionFilter.OP_LIKE:
+            case Filter.OP_LIKE:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " LIKE '" + value + "'";
-            case ConditionFilter.OP_LEFT_LIKE:
+            case Filter.OP_LEFT_LIKE:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " LIKE '%" + value + "'";
-            case ConditionFilter.OP_RIGHT_LIKE:
+            case Filter.OP_RIGHT_LIKE:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " LIKE '" + value + "%'";
-            case ConditionFilter.OP_ALL_LIKE:
+            case Filter.OP_ALL_LIKE:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " LIKE '%" + value + "%'";
-            case ConditionFilter.OP_GREATER_THAN:
+            case Filter.OP_GREATER_THAN:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " > '" + value + "'";
-            case ConditionFilter.OP_LESS_THAN:
+            case Filter.OP_LESS_THAN:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " < '" + value + "'";
-            case ConditionFilter.OP_GREATER_OR_EQUAL:
+            case Filter.OP_GREATER_OR_EQUAL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " >= '" + value + "'";
-            case ConditionFilter.OP_LESS_OR_EQUAL:
+            case Filter.OP_LESS_OR_EQUAL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " <= '" + value + "'";
-            case ConditionFilter.OP_IS_NULL:
+            case Filter.OP_IS_NULL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " IS NULL";
-            case ConditionFilter.OP_IS_NOT_NULL:
+            case Filter.OP_IS_NOT_NULL:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 return property + " IS NOT NULL";
-            case ConditionFilter.OP_AND:
-            case ConditionFilter.OP_OR:
+            case Filter.OP_AND:
+            case Filter.OP_OR:
                 if (null == value || !(value instanceof List)) return "";
-                String op = operator == ConditionFilter.OP_AND ? " AND " : " OR ";
+                String op = operator == Filter.OP_AND ? " AND " : " OR ";
                 StringBuilder builder = new StringBuilder();
                 boolean first = true;
                 for (Object object : ((List) value)) {
@@ -254,23 +254,23 @@ public class ConditionFilter implements Serializable {
                     if ("".equals(param)) continue;
                     if (first) first = false;
                     else builder.append(op);
-                    if (object instanceof ConditionFilter) builder.append(object.toString());
+                    if (object instanceof Filter) builder.append(object.toString());
                     else builder.append("**INVALID VALUE - NOT A FILTER: (" + object + ") **");
                 }
-                if (first) return (operator == ConditionFilter.OP_AND ? "AND: " : "OR: ") + "**EMPTY LIST**";
+                if (first) return (operator == Filter.OP_AND ? "AND: " : "OR: ") + "**EMPTY LIST**";
                 return builder.toString();
-            case ConditionFilter.OP_NOT:
-                if (value instanceof ConditionFilter) return "NOT " + value.toString();
-            case ConditionFilter.OP_RANGE_INT:
+            case Filter.OP_NOT:
+                if (value instanceof Filter) return "NOT " + value.toString();
+            case Filter.OP_RANGE_INT:
                 if (null == value || "".equals(value.toString().trim())) return "";
-                if (!value.toString().contains("_")) return new ConditionFilter(property, value, OP_EQUAL).toString();
+                if (!value.toString().contains("_")) return new Filter(property, value, OP_EQUAL).toString();
                 String[] param = value.toString().split("_");
                 String min = param[0].trim();
                 String max = param[1].trim();
-                if ("".equals(min)) return new ConditionFilter(property, max, OP_LESS_OR_EQUAL).toString();
-                if ("".equals(max)) return new ConditionFilter(property, min, OP_GREATER_OR_EQUAL).toString();
+                if ("".equals(min)) return new Filter(property, max, OP_LESS_OR_EQUAL).toString();
+                if ("".equals(max)) return new Filter(property, min, OP_GREATER_OR_EQUAL).toString();
                 return property + " BETWEEN '" + min + "' AND '" + max + "'";
-            case ConditionFilter.OP_RANGE_DATE:
+            case Filter.OP_RANGE_DATE:
                 if (null == value || "".equals(value.toString().trim())) return "";
                 if (!value.toString().contains("_"))
                     return property + " = TO_DATE('" + value + "', 'yyyy-mm-dd hh24:mi:ss')";
@@ -280,7 +280,7 @@ public class ConditionFilter implements Serializable {
                 if ("".equals(minDate)) minDate = "TO_DATE('0001-01-01 00:00:00', 'YYYY-MM-DD HH24:MI:SS')";
                 if ("".equals(maxDate)) maxDate = "sysdate";
                 return property + " BETWEEN TO_DATE('" + minDate + "', 'yyyy-mm-dd hh24:mi:ss') AND TO_DATE('" + maxDate + "', 'yyyy-mm-dd hh24:mi:ss')";
-            case ConditionFilter.OP_CUSTOMER:
+            case Filter.OP_CUSTOMER:
                 return property + " " + value;
             default:
                 return "";

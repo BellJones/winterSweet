@@ -15,15 +15,37 @@
  *
  */
 
-package com.winterSweet.condition;
+package com.winterSweet.condition.core;
+
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/14 21:30
+ * Date: 2017/3/16 20:57
  * <p>
- * Description: TODO
+ * Description: 默认返回 <code>searchAndCount()</code> 的结果。</p>
+ *  它有两个属性:
+ *  1. 经condition过滤后的结果;
+ *  2. 结果集的总数，是为分页情况下的数目;
  */
-public interface ICondition {
+public class Result<T> {
+    private List<T> result;
+    private int totalCount = -1;
 
+    public List<T> getResult() {
+        return result;
+    }
+
+    public void setResult(List<T> result) {
+        this.result = result;
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
+    }
 }

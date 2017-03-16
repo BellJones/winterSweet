@@ -15,31 +15,32 @@
  *
  */
 
-package com.winterSweet.condition.oracle;
+package com.winterSweet.condition.core;
 
 import java.util.List;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/11 21:52
+ * Date: 2017/3/16 22:37
  * <p>
- * Description: Condition接口，定义condition的方法
+ * Description: provides a clean interface to the Condition APIs.
  */
-public interface ICondition {
+public interface Facade {
 
-    // 数据返回格式定义
-    int RESULT_AUTO = 0; // 默认为JSON格式
-    int RESULT_ARRAY = 1; // 字符串格式
-    int RESULT_LIST = 2; // list格式
-    int RESULT_MAP = 3; // map键值对格式
-    int RESULT_SINGLE = 4; // 单列数据
+    List condition(ICondition condition);
 
-    Class<?> getBaseClass(); // 获取操作类
+    List condition(Class<?> conditionClass, ICondition condition);
 
-    List<ConditionFilter> getConditionFilters(); // 搜索条件
+    int count(ICondition condition);
 
-    List<ConditionField> getConditionFields(); // 操作函数
+    int count(Class<?> conditionClass, ICondition condition);
 
-    int getResultMode(); // 返回数据格式模型
+    Result conditionAndCount(ICondition condition);
+
+    Result conditionAndCount(Class<?> conditionClass, ICondition condition);
+
+    Object conditionUnique(ICondition condition);
+
+    Object conditionUnique(Class<?> conditionClass, ICondition condition);
 }

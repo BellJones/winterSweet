@@ -12,16 +12,43 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
 
-package com.winterSweet.condition.oracle;
+package com.winterSweet.condition.core;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/7 14:58
+ * Date: 2017/3/16 22:47
  * <p>
- * Description: SQL拼接主函数
+ * Description: TODO
  */
-public class Condition {
+public interface Metadata {
+
+    boolean isEntity();
+
+    boolean isCollection();
+
+    boolean isString();
+
+    boolean isNumeric();
+
+    Class<?> getJavaClass();
+
+    String getEntityName();
+
+    String[] getProperties();
+
+    Object getPropertyValue(Object object, String property);
+
+    Metadata getPropertyType(String property);
+
+    String getIdProperty();
+
+    Metadata getIdType();
+
+    Object getIdValue(Object object);
+
+    Class<?> getCollectionClass();
 }

@@ -44,9 +44,9 @@ public class DataConfig {
     @Bean("dataSource")
     public DataSource dataSource() throws SQLException, IOException {
         DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName("oracle.jdbc.OracleDriver");
+        dataSource.setDriverClassName("core.jdbc.OracleDriver");
         // 数据库连接URL
-        dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:ORCL/winterSweet");
+        dataSource.setUrl("jdbc:core:thin:@localhost:1521:ORCL/winterSweet");
         // 数据库用户名
         dataSource.setUsername("winterSweet");
         // 用户密码
