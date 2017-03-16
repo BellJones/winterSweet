@@ -77,4 +77,16 @@ public class MapUtil {
         s = Math.round(s * 10000) / 10000;
         return s;
     }
+
+    // 测试
+    public static void main(String[] args) {
+        double lat1 = 34.264648;
+        double lon1 = 108.952736;
+
+        int radius = 1000;
+        getAround(lat1,lon1,radius);
+
+        double dis = getDistance(108.952736,34.264648,116.407288,39.904549);
+        System.out.println(dis);
+    }
 }
