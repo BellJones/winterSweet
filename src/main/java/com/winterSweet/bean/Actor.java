@@ -16,8 +16,8 @@
 
 package com.winterSweet.bean;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonInclude;
+import com.winterSweet.condition.mapping.TableField;
+import com.winterSweet.condition.mapping.Table;
 
 import java.util.Date;
 
@@ -29,11 +29,15 @@ import java.util.Date;
  * Version: 1.0
  * Description: 演员类
  */
-//@JsonInclude(JsonInclude.Include.NON_NULL) // 空值不返回
+@Table(tableName = "actor")
 public class Actor {
+    @TableField(name = "actor_id", isPrimaryKey = true)
     private int actorId;
+    @TableField(name = "first_name")
     private String firstName;
+    @TableField(name = "last_name")
     private String lastName;
+    @TableField(name = "last_update")
     private Date lastUpdate;
 
     public int getActorId() {

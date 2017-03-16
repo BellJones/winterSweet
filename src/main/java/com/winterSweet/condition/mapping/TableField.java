@@ -15,7 +15,7 @@
  *
  */
 
-package com.winterSweet.condition.orm;
+package com.winterSweet.condition.mapping;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
