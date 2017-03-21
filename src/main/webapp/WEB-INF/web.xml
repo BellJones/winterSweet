@@ -86,9 +86,10 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
-            com.winterSweet.springConfig.DataConfig,
-            com.winterSweet.springConfig.AppConfig
-        </param-value>
+			com.winterSweet.springConfig.AppConfig,
+			com.winterSweet.springConfig.OracleDataConfig,
+			com.winterSweet.springConfig.MySqlDataConfig
+		</param-value>
 	</context-param>
 
 	<!-- 跨域配置 -->

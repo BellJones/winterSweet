@@ -38,29 +38,21 @@ import java.sql.SQLException;
  * </p>
  */
 @Configuration
-@Profile("data")
-public class DataConfig {
+@Profile("oracle")
+public class OracleDataConfig {
 
     @Bean("dataSource")
     public DataSource dataSource() throws SQLException, IOException {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("core.jdbc.OracleDriver");
-        // 数据库连接URL
         dataSource.setUrl("jdbc:core:thin:@localhost:1521:ORCL/winterSweet");
-        // 数据库用户名
         dataSource.setUsername("winterSweet");
-        // 用户密码
         dataSource.setPassword("123456");
-        // 初始化时建立物理连接的个数
-        dataSource.setInitialSize(3);
-        // 最大连接池数量
-        dataSource.setMaxActive(20);
-        // 最小连接池数量
-        dataSource.setMinIdle(2);
-        // 获取连接时最大等待时间，单位毫秒
-        dataSource.setMaxWait(2000);
-        // 是否缓存preparedStatement
-        dataSource.setPoolPreparedStatements(true);
+        dataSource.setInitialSize(3); // 初始化时建立物理连接的个数
+        dataSource.setMaxActive(20); // 最大连接池数量
+        dataSource.setMinIdle(2); // 最小连接池数量
+        dataSource.setMaxWait(2000); // 获取连接时最大等待时间，单位毫秒
+        dataSource.setPoolPreparedStatements(true); // 是否缓存preparedStatement
         dataSource.setMaxOpenPreparedStatements(100);
         // 监控统计用的filter:stat 日志用的filter:log4j 防御sql注入的filter:wall
         dataSource.setFilters("stat,wall");
