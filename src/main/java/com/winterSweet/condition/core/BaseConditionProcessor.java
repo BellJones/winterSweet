@@ -17,40 +17,24 @@
 
 package com.winterSweet.condition.core;
 
-import java.io.Serializable;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/16 22:47
+ * Date: 2017/3/18 20:40
  * <p>
  * Description: TODO
  */
-public interface Metadata {
+public abstract class BaseConditionProcessor {
 
-    boolean isEntity();
+    private static Logger logger = LogManager.getLogger(BaseConditionProcessor.class);
 
-    boolean isCollection();
+    public static final int SQL_TYPE_ORACLE = 0;
+    public static final int SQL_TYPE_MYSQL = 1;
 
-    boolean isString();
+    private int sqlType;
 
-    boolean isNumeric();
 
-    Class<?> getJavaClass();
-
-    String getEntityName();
-
-    String[] getProperties();
-
-    Object getPropertyValue(Object object, String property);
-
-    Metadata getPropertyType(String property);
-
-    String getIdProperty();
-
-    Metadata getIdType();
-
-    Serializable getIdValue(Object object);
-
-    Class<?> getCollectionClass();
 }

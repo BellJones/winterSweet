@@ -22,35 +22,17 @@ import java.io.Serializable;
 /**
  * Created with IntelliJ IDEA
  * User: Butterfly Killer
- * Date: 2017/3/16 22:47
+ * Date: 2017/3/18 20:55
  * <p>
  * Description: TODO
  */
-public interface Metadata {
+public interface MetadataUtil {
 
-    boolean isEntity();
+    Serializable getId(Object object);
 
-    boolean isCollection();
+    boolean isId(Class<?> rootClass, String propertyPath);
 
-    boolean isString();
+    Metadata get(Class<?> clazz);
 
-    boolean isNumeric();
 
-    Class<?> getJavaClass();
-
-    String getEntityName();
-
-    String[] getProperties();
-
-    Object getPropertyValue(Object object, String property);
-
-    Metadata getPropertyType(String property);
-
-    String getIdProperty();
-
-    Metadata getIdType();
-
-    Serializable getIdValue(Object object);
-
-    Class<?> getCollectionClass();
 }
